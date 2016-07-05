@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :pets do
     collection { post :import }
   end
+  resources :charges
   get "/sell" => "pets#new"
 
 end
