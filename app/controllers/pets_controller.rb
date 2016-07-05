@@ -22,7 +22,7 @@ class PetsController < ApplicationController
   end
 
   def import
-    Pet.import(params[:file])
+    Pet.import(params[:pet][:file], current_user)
     redirect_to root_url, notice: "Pet info imported."
   end
 
