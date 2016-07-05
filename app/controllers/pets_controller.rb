@@ -19,6 +19,7 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    @stripe_price = (@pet.price.to_f * 10).to_s.gsub('.','')
   end
 
   def import
@@ -27,6 +28,8 @@ class PetsController < ApplicationController
   end
 
 private
+
+
   def approved_params
     params.require(:pet).permit(:species,:price,:description,:seller_id)
   end

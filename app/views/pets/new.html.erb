@@ -1,10 +1,10 @@
 <html>
   <body>
     <h2>Sell a pet</h2>
-    <h4>Enter infomation manually</h4>
+    <h4>Enter information manually</h4>
     <%= bootstrap_form_for @pet, url: pets_path do |f| %>
      <%= f.text_field :species, label: "Species:" %>
-     <%= f.text_field :price, label: "Set Price:" %>
+     <%= f.number_field :price, step: 0.01, label: "Set Price:" %>
      <%= f.text_field :description, label: "Description" %>
      <%= f.hidden_field :seller_id, value: current_user.id %>
      <button class="btn btn-primary btn-sm">Submit</button>

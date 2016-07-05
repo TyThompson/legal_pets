@@ -20,7 +20,7 @@
      <% @pets.each do |p| %>
     <tr>
       <th> <%= p.species %></th>
-      <th> <%= p.seller_id %></th>
+      <th> <%= p.seller.email.split('@').first %></th>
       <th>$<%= p.price %></th>
       <th> <%= p.description %></th>
       <th><%= button_to "Show", pet_path(id: p.id), class: "btn btn-success btn-xs", method: "get" %></th>

@@ -17,7 +17,7 @@
    <tbody  id="current-pets">
     <tr>
       <th> <%= @pet.species %></th>
-      <th> <%= @pet.seller_id %></th>
+      <th> <%= @pet.seller.email.split('@').first %></th>
       <th>$<%= @pet.price %></th>
       <th> <%= @pet.description %></th>
     </tr>
@@ -28,13 +28,12 @@
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_iSj3eYtFd2Ul8cBLBNrKk5As"
-    data-amount="<%= @pet.price.gsub('.','') %>"
-    data-name="Demo Site"
-    data-description="Widget"
-    data-image="/img/documentation/checkout/marketplace.png"
+    data-amount="<%= @stripe_price %>"
+    data-name="'Legal' Pets"
+    data-description="<%= @pet.species %>"
+    data-image="https://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@pet.seller.email) %>"
     data-locale="auto">
   </script>
 </form>
-
 </body>
 </html>
