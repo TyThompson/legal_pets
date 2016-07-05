@@ -24,5 +24,17 @@
    </tbody>
  </table>
 
+ <form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_iSj3eYtFd2Ul8cBLBNrKk5As"
+    data-amount="<%= @pet.price.gsub('.','') %>"
+    data-name="Demo Site"
+    data-description="Widget"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</form>
+
 </body>
 </html>
