@@ -21,6 +21,11 @@ class PetsController < ApplicationController
     @pet = Pet.find(params[:id])
   end
 
+  def import
+    Pet.import(params[:file])
+    redirect_to root_url, notice: "Pet info imported."
+  end
+
 private
   def approved_params
     params.require(:pet).permit(:species,:price,:description,:seller_id)

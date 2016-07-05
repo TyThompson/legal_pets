@@ -46,7 +46,7 @@ group :development do
   gem 'spring'
 end
 
-
+gem 'roo'
 gem 'devise'
 gem 'pundit'
 gem 'twitter-bootstrap-rails'
