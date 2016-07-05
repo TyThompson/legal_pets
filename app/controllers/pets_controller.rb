@@ -17,6 +17,10 @@ class PetsController < ApplicationController
     end
   end
 
+  def show
+    @pet = Pet.find(params[:id])
+  end
+
 private
   def approved_params
     params.require(:pet).permit(:species,:price,:description,:seller_id)
