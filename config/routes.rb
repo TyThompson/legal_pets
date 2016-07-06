@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :pets do
     collection { get :export }
+    collection { post :import }
   end
   resources :charges
   get "/sell" => "pets#new"
