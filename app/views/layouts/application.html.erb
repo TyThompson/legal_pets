@@ -49,8 +49,10 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "Browse", pets_path  %></li>
+            <% if user_signed_in? %>
             <li><%= link_to "Sell", sell_path  %></li>
-            <!-- <li><%= link_to "Link3", "/path3"  %></li> -->
+            <li><%= link_to "Watchlists", watchlists_path  %></li>
+            <% end %>
           </ul>
         </div>
       </div>

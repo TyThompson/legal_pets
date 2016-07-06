@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160705174831) do
 
   create_table "pets", force: :cascade do |t|
     t.integer "seller_id"
-    t.string  "price"
+    t.float  "price"
     t.text    "description"
     t.string  "species"
     t.text    "image_url"
@@ -45,5 +45,11 @@ ActiveRecord::Schema.define(version: 20160705174831) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "watchlists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "species", null: false
+    t.float "price", null: false
+  end
 
 end
