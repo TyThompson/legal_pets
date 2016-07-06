@@ -32,6 +32,15 @@ class PetsController < ApplicationController
     end
   end
 
+  def export
+    @pets = Pet.where seller_id: current_user.id
+    respond_to do |format|
+      format.html
+      format.csv { send_data @pets.to_csv }
+      format.xls { send_data @pets.to_csv(col_sep: "\t") }
+    end
+  end
+
 private
 
 

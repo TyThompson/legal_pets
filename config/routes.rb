@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   resources :pets do
-    collection { post :import }
+    collection { get :export }
   end
   resources :charges
   get "/sell" => "pets#new"
 
+  resources :users, only: [:show]
 end

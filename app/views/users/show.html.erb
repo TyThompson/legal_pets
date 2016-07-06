@@ -1,0 +1,11 @@
+<h2>Account Options</h2>
+
+<h4>Change Account Information</h4>
+<%= link_to "Change Account Information", edit_user_registration_path %>
+
+<h4>Export Your Animal Data</h4>
+<p>
+Download:
+<%= link_to "CSV", export_pets_path(format: "csv") %> |
+<%= link_to "Excel", export_pets_path(format: "xls") %>
+</p>
