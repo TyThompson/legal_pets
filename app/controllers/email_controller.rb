@@ -21,4 +21,6 @@ class EmailsController < ApplicationController
   #           :subject => "Price Drop on 'Legal' Pets!",
   #           :body => body = erb(:invite_email, layout: false )
   # end
+
+
 end
