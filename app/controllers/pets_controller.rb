@@ -10,6 +10,7 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new (approved_params)
     if @pet.save
+      watchlist_check
       flash[:notice] = "Legal pet sale created!"
       redirect_to pets_path
     else
@@ -42,8 +43,6 @@ class PetsController < ApplicationController
   end
 
 private
-
-
   def approved_params
     params.require(:pet).permit(:species,:price,:description,:seller_id)
   end
