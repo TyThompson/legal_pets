@@ -9,6 +9,7 @@ class Pet < ActiveRecord::Base
       row = Hash[[header, spreadsheet.row(i)].transpose]
       pet = find_by_id(row["id"]) || new
       pet.attributes = row.to_hash.slice(*row.to_hash.keys)
+      pet.image_url = get_pic(pet.species, pet.common_name)
       pet.seller_id = user.id
       pet.save!
     end
@@ -29,6 +30,46 @@ class Pet < ActiveRecord::Base
       all.each do |pet|
         csv << pet.attributes.values_at(*column_names)
       end
+    end
+  end
+
+  def self.get_pic(species, common_name)
+    species_resp = HTTParty.get("https://pixabay.com/api/",
+    query: {:key => ENV["PIXABAY_KEY"],
+            :q => species,
+            :image_type => 'photo'})
+
+    common_resp = HTTParty.get("https://pixabay.com/api/",
+    query: {:key => ENV["PIXABAY_KEY"],
+            :q => common_name,
+            :image_type => 'photo'})
+
+    if species_resp["hits"].present?
+      species_resp["hits"].first["webformatURL"]
+    elsif common_resp["hits"].present?
+      common_resp["hits"].first["webformatURL"]
+    else
+      '/No_Image_Available.png'
+    end
+  end
+
+  def get_pic
+    species_resp = HTTParty.get("https://pixabay.com/api/",
+    query: {:key => ENV["PIXABAY_KEY"],
+            :q => self.species,
+            :image_type => 'photo'})
+
+    common_resp = HTTParty.get("https://pixabay.com/api/",
+    query: {:key => ENV["PIXABAY_KEY"],
+            :q => self.common_name,
+            :image_type => 'photo'})
+
+    if species_resp["hits"].present?
+      self.image_url = species_resp["hits"].first["webformatURL"]
+    elsif common_resp["hits"].present?
+      self.image_url = common_resp["hits"].first["webformatURL"]
+    else
+      self.image_url = '/No_Image_Available.png'
     end
   end
 end

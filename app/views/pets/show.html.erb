@@ -1,28 +1,29 @@
 <html>
 <body>
-
- <h2>
-   Pet listing
- </h2>
-
- <table class="table table-hover table-striped table-condensed">
-   <thead>
-     <tr>
-       <th>Species</th>
-       <th>Seller ID</th>
-       <th>Price</th>
-       <th>Description</th>
-     </tr>
-   </thead>
-   <tbody  id="current-pets">
-    <tr>
-      <th> <%= @pet.species %></th>
-      <th> <%= @pet.seller.email.split('@').first %></th>
-      <th>$<%= @pet.price %></th>
-      <th> <%= @pet.description %></th>
-    </tr>
-   </tbody>
- </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2">
+        <div> <!--padding-->
+          <ul>
+          </ul>
+        </div>
+        <img src="<%= @pet.image_url %>" height="236" width="180" onerror="this.src='/no-cover.gif'" />
+        <div> <!--padding-->
+          <ul>
+          </ul>
+        </div>
+        <p>Status: <%= @pet.status %></p>
+      </div>
+      <div class="col-lg-7">
+        <h3><%= @pet.common_name %> (<%= @pet.species %>)</h3>
+        <h4>Seller: <%= @pet.seller.email.split('@').first %></h4>
+        Description:
+        <ul>
+          <li><%= @pet.description  %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
  <form action="" method="POST">
   <script

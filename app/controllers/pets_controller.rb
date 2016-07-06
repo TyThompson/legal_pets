@@ -9,6 +9,7 @@ class PetsController < ApplicationController
 
   def create
     @pet = Pet.new (approved_params)
+    @pet.get_pic
     if @pet.save
       flash[:notice] = "Legal pet sale created!"
       redirect_to pets_path
@@ -43,8 +44,16 @@ class PetsController < ApplicationController
 
 private
 
+  def get_pic(species)
+    resp = HTTParty.get("https://pixabay.com/api/",
+    query: {:key => ENV["PIXABAY_KEY"],
+            :q => species})
+
+    resp["hits"].first["webformatURL"]
+  end
+
 
   def approved_params
-    params.require(:pet).permit(:species,:price,:description,:seller_id)
+    params.require(:pet).permit(:species,:price,:description,:seller_id, :common_name)
   end
 end

@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20160705174831) do
     t.string  "price"
     t.text    "description"
     t.string  "species"
+    t.text    "image_url"
+    t.string  "status",                 default: "avaliable"
+    t.string  "common_name"
   end
 
   add_index "pets", ["seller_id"], name: "index_pets_on_seller_id", using: :btree

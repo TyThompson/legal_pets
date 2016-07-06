@@ -4,6 +4,7 @@
     <h4>Enter information manually</h4>
     <%= bootstrap_form_for @pet, url: pets_path do |f| %>
      <%= f.text_field :species, label: "Species:" %>
+     <%= f.text_field :common_name, label: "Common Name:" %>
      <%= f.number_field :price, step: 0.01, label: "Set Price:" %>
      <%= f.text_field :description, label: "Description" %>
      <%= f.hidden_field :seller_id, value: current_user.id %>

@@ -47,12 +47,14 @@ group :development do
   gem 'spring'
 end
 
+gem 'figaro'
 gem 'roo'
 gem 'devise'
 gem 'pundit'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 gem 'quiet_assets'
+gem 'httparty'
 group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
