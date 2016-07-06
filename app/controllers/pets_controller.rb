@@ -24,7 +24,7 @@ class PetsController < ApplicationController
 
   def import
     ext = File.extname(params[:pet][:file].original_filename)
-    if ext == ".csv" || ".xls" || ".xlsx"
+    if (ext == ".csv") || (ext == ".xls") || (ext == ".xlsx")
       Pet.import(params[:pet][:file], current_user)
       redirect_to root_url, notice: "Pet info imported."
     else
