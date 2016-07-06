@@ -23,8 +23,13 @@ class PetsController < ApplicationController
   end
 
   def import
-    Pet.import(params[:pet][:file], current_user)
-    redirect_to root_url, notice: "Pet info imported."
+    ext = File.extname(params[:pet][:file].original_filename)
+    if ext == ".csv" || ".xls" || ".xlsx"
+      Pet.import(params[:pet][:file], current_user)
+      redirect_to root_url, notice: "Pet info imported."
+    else
+      redirect_to sell_path, notice: "Wrong File Format"
+    end
   end
 
 private
