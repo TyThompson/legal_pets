@@ -159,6 +159,8 @@ GEM
       railties (>= 4.2.0, < 5.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rollbar (2.11.2)
+      multi_json
     roo (2.4.0)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
@@ -228,6 +230,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.6)
   rails-erd
+  rollbar
   roo
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

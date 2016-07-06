@@ -47,6 +47,7 @@ group :development do
   gem 'spring'
 end
 
+gem 'rollbar'
 gem 'figaro'
 gem 'roo'
 gem 'devise'
