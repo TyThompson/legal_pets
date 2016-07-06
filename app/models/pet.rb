@@ -2,11 +2,6 @@ class Pet < ActiveRecord::Base
   belongs_to :seller, class_name: "User"
   validates_presence_of :species, :description, :price
 
-
-  def accessible_attributes
-    ["Species", "Set Price", "Description"]
-  end
-
   def self.import(file, user)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
