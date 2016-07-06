@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :charges
+  resources :watchlists
   get "/sell" => "pets#new"
 
   resources :users, only: [:show]
