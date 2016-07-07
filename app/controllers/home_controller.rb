@@ -6,4 +6,8 @@ class HomeController < ApplicationController
   def index
   end
 
+  def test
+    UserNotifier.send_watchlist_email(current_user, 'hog').deliver
+    render :index
+  end
 end

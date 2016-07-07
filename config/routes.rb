@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :charges
   resources :watchlists
   get "/sell" => "pets#new"
+  get "/test" => "home#test"
 
   resources :users, only: [:show]
 end
