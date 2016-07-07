@@ -30,7 +30,7 @@
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_iSj3eYtFd2Ul8cBLBNrKk5As"
     data-amount="<%= @stripe_price %>"
-    data-name="'Seems Legit' Pets"
+    data-name="'Legal' Pets"
     data-description="<%= @pet.species %>"
     data-image="https://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@pet.seller.email) %>"
     data-locale="auto">
