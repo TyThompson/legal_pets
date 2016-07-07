@@ -1,4 +1,7 @@
 class ChargesController < ApplicationController
+
+  protect_from_forgery except: :create
+
   def new
   end
 
@@ -23,6 +26,9 @@ class ChargesController < ApplicationController
       pet = Pet.find params[:pet_id]
       pet.status = "sold"
       pet.save
+      redirect_to pet_path(pet), notice: "Congratulations, you purchased the #{pet.common_name}!"
+    else
+      redirect_to pet_path(pet), notice: "Sorry, your card was declined"
     end
 
 

@@ -1,4 +1,5 @@
 class PetsController < ApplicationController
+
   def index
     @pets = Pet.where(status: 'avaliable')
   end
