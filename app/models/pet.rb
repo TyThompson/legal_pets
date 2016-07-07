@@ -25,10 +25,11 @@ class Pet < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
+    wanted_columns = ["id", "seller_id", "species", "common_name", "price", "description", "status"]
     CSV.generate(options) do |csv|
-      csv << column_names
+      csv << wanted_columns
       all.each do |pet|
-        csv << pet.attributes.values_at(*column_names)
+        csv << pet.attributes.values_at(*wanted_columns)
       end
     end
   end

@@ -18,12 +18,14 @@ ActiveRecord::Schema.define(version: 20160705174831) do
 
   create_table "pets", force: :cascade do |t|
     t.integer "seller_id"
+    t.string  "species"
+    t.string  "common_name"
     t.float  "price"
     t.text    "description"
-    t.string  "species"
-    t.text    "image_url"
     t.string  "status",                 default: "avaliable"
-    t.string  "common_name"
+    t.text    "image_url"
+
+
   end
 
   add_index "pets", ["seller_id"], name: "index_pets_on_seller_id", using: :btree
