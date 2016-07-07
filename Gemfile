@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'stripe'
 gem 'rails-erd'
-gem 'pony'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
