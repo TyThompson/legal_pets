@@ -1,10 +1,4 @@
-class PetPolicy
-  attr_reader :user, :post
-
-  def initialize(user, post)
-    @user = user
-    @post = post
-  end
+class PetPolicy < ApplicationPolicy
 
   def index?
     true
@@ -27,6 +21,6 @@ class PetPolicy
   end
 
   def update?
-    user.admin? or not post.published?
+    current_user
   end
 end

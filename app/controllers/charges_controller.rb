@@ -2,9 +2,6 @@ class ChargesController < ApplicationController
 
   protect_from_forgery except: :create
 
-  def new
-  end
-
   def create
     # Amount in cents
 

@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'home#index'
-  resources :pets do
+  resources :pets, except: [:destroy, :new] do
     collection { get :export }
     collection { post :import }
   end
-  resources :charges
-  resources :watchlists
+  resources :charges, only: [:create]
+  resources :watchlists, except: [:destroy, :edit, :update]
   get "/sell" => "pets#new"
   get "/test" => "home#test"
 
