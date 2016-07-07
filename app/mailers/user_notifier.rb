@@ -6,6 +6,6 @@ class UserNotifier < ActionMailer::Base
     @user = user
     @species = species
     mail( :to => @user.email,
-    :subject => @species + ' is available!' )
+    :subject => ' 'Seems Legit' Pets: ' + @species + ' is available!' )
   end
 end

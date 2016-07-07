@@ -11,7 +11,7 @@ class PetsController < ApplicationController
     @pet = Pet.new (approved_params)
     @pet.get_pic
     if @pet.save
-      UserNotifier.send_watchlist_email(current_user, @pet.species).deliver
+      watchlist_check
       flash[:notice] = "Legal pet sale created!"
       redirect_to pets_path
     else
