@@ -1,6 +1,13 @@
 <html>
   <body>
     <h2>Sell a pet</h2>
+    <h4>Import from file</h4>
+    <%= bootstrap_form_for @pet, url: import_pets_path, multipart: true do |f| %>
+      <%= f.file_field :file, label: "Must be .csv .xls .xlsx" %>
+      <button class="btn btn-primary btn-sm">Import</button>
+    <% end %>
+    <h4>Or</h4>
+    <p></p>
     <h4>Enter information manually</h4>
     <%= bootstrap_form_for @pet, url: pets_path do |f| %>
      <%= f.text_field :species, label: "Species:" %>
@@ -9,13 +16,6 @@
      <%= f.text_field :description, label: "Description" %>
      <%= f.hidden_field :seller_id, value: current_user.id %>
      <button class="btn btn-primary btn-sm">Submit</button>
-    <% end %>
-    <h4>Or</h4>
-    <p></p>
-    <h4>Import from file</h4>
-    <%= bootstrap_form_for @pet, url: import_pets_path, multipart: true do |f| %>
-      <%= f.file_field :file, label: "Must be .csv .xls .xlsx" %>
-      <button class="btn btn-primary btn-sm">Import</button>
     <% end %>
   </body>
 </html>
