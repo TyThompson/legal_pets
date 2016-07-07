@@ -6,7 +6,7 @@ class ChargesController < ApplicationController
     # Amount in cents
 
     Stripe.api_key = "sk_test_0nOTw0Tfjk6Rh8JpXi903WmV"
-    @amount = 500
+    @amount = params[:price].to_i
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
@@ -19,7 +19,12 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
-    raise
+    if charge.paid
+      pet = Pet.find params[:pet_id]
+      pet.status = "sold"
+      pet.save
+    end
+
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

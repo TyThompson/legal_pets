@@ -24,17 +24,20 @@
       </div>
     </div>
   </div>
-
- <form action="/charges" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_iSj3eYtFd2Ul8cBLBNrKk5As"
-    data-amount="<%= @stripe_price %>"
-    data-name="'Legal' Pets"
-    data-description="<%= @pet.species %>"
-    data-image="https://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@pet.seller.email) %>"
-    data-locale="auto">
-  </script>
-</form>
+  <% unless @pet.status == 'sold' %>
+   <form action="/charges" method="POST">
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_iSj3eYtFd2Ul8cBLBNrKk5As"
+      data-amount="<%= @pet.price*100 %>"
+      data-name="'Legal' Pets"
+      data-description="<%= @pet.species %>"
+      data-image="https://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@pet.seller.email) %>"
+      data-locale="auto">
+    </script>
+    <input type="hidden" name="pet_id" value="<%= @pet.id %>">
+    <input type="hidden" name="price" value="<%= @pet.price*100 %>">
+  </form>
+  <% end %>
 </body>
 </html>
