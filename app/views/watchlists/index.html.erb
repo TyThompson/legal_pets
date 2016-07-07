@@ -21,6 +21,9 @@
       <th> <%= w.species %></th>
       <th> <%= w.user.email.split('@').first %></th>
       <th>$<%= w.price %></th>
+      <% if current_user == w.user %>
+      <th><%= button_to 'Delete', watchlist_path(id: w.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs"  %></th>
+      <% end %>
     </tr>
       <% end %>
    </tbody>
