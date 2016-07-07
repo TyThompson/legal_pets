@@ -1,0 +1,6 @@
+<%= bootstrap_form_for @pet, url: pet_path(@pet), method: :patch do |f| %>
+  <%= f.number_field :price, label: "Price", value: @pet.price %>
+  <%= f.text_field :common_name, label: "Common Name", value: @pet.common_name %>
+  <%= f.text_field :description, label: "Description", value: @pet.description %>
+  <button class="btn btn-primary btn-sm">Update</button>
+<% end %>

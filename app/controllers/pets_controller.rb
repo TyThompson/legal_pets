@@ -8,6 +8,20 @@ class PetsController < ApplicationController
     @pet = Pet.new
   end
 
+  def edit
+    @pet = Pet.find(params[:id])
+  end
+
+  def update
+    @pet = Pet.find params[:id]
+    if @pet.update approved_params
+      flash[:notice] = "Pet information edited!"
+      redirect_to @pet
+    else
+      render :edit
+    end
+  end
+
   def create
     @pet = Pet.new (approved_params)
     @pet.get_pic
