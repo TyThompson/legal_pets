@@ -20,7 +20,7 @@
     <tr>
       <th> <%= w.species %></th>
       <th> <%= w.user.email.split('@').first %></th>
-      <th>$<%= w.price %></th>
+      <th> <%= number_to_currency(w.price, :unit => "$") %></th>
       <% if current_user == w.user %>
       <th><%= button_to 'Edit', edit_watchlist_path(w.id), class: "btn btn-success btn-xs", method: :get  %>
       <%= button_to 'Delete', watchlist_path(id: w.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-success btn-xs"  %>
