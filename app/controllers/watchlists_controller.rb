@@ -13,7 +13,7 @@ class WatchlistsController < ApplicationController
   end
 
   def create
-    @watchlist = Watchlist.new (approved_params)
+    @watchlist = Watchlist.new approved_params
     authorize @watchlist
     if @watchlist.save
       flash[:notice] = "Watchlist created!"
