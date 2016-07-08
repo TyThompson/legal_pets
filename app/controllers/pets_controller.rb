@@ -36,7 +36,7 @@ class PetsController < ApplicationController
   end
 
   def create
-    @pet = Pet.new (approved_params)
+    @pet = Pet.new approved_params
     authorize @pet
     @pet.get_pic
     if @pet.save
@@ -51,7 +51,7 @@ class PetsController < ApplicationController
   def show
     @pet = Pet.find(params[:id])
     authorize @pet
-    @stripe_price = (@pet.price.to_f * 10).to_s.gsub('.','')
+    @stripe_price = (@pet.price.to_f * 10).to_s.delete('.')
   end
 
   def import
