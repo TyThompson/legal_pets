@@ -17,7 +17,7 @@
     <tr>
       <th> <%= @watchlist.species %></th>
       <th> <%= @watchlist.user.email.split('@').first %></th>
-      <th>$<%= @watchlist.price %></th>
+      <th> <%= number_to_currency(@watchlist.price, :unit => "$") %></th>
     </tr>
    </tbody>
  </table>

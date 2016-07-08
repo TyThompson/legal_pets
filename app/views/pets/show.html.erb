@@ -13,7 +13,7 @@
           </ul>
         </div>
         <p>Status: <%= @pet.status %></p>
-        <p>Price: $<%= @pet.price %></p>
+        <p>Price: <%= number_to_currency(@pet.price, :unit => "$") %></p>
         <% if @pet.status != 'sold' && policy(current_user).create? %>
           <form action="/charges" method="POST">
             <script
