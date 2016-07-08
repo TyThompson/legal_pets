@@ -20,6 +20,10 @@ class UserPolicy < ApplicationPolicy
     is_user?
   end
 
+  def update?
+    is_user? || is_admin?
+  end
+
   private
 
   def is_user?

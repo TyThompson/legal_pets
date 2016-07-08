@@ -22,7 +22,9 @@
    </tbody>
  </table>
 <table>
-  <th><%= button_to 'Edit Again', :back, method: :get, class: "btn btn-success btn-xs" %></th>
+  <% if policy(current_user).edit? %>
+    <th><%= button_to 'Edit Again', :back, method: :get, class: "btn btn-success btn-xs" %></th>
+  <% end %>
   <th><%= button_to "Watchlists", watchlists_path, method: :get, class: "btn btn-success btn-xs" %></th>
 </table>
 </body>
