@@ -49,9 +49,20 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "Browse", pets_path  %></li>
+            <% if policy(:pet).new? %>
+              <li><%= link_to "Sell", sell_path  %></li>
+            <% end %>
+            <% if policy(:watchlist).index? %>
+              <li><%= link_to "Watchlists", watchlists_path  %></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
             <% if user_signed_in? %>
-            <li><%= link_to "Sell", sell_path  %></li>
-            <li><%= link_to "Watchlists", watchlists_path  %></li>
+              <li><%= link_to 'Account', user_path(current_user) %></li>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+            <% else %>
+              <li><%= link_to('Login', new_user_session_path)  %></li>
+              <li><%= link_to "Register", new_user_registration_path(User.new)  %></li>
             <% end %>
           </ul>
         </div>
@@ -65,19 +76,6 @@
           <%= yield %>
         </div>
         <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>'Legal' Pets</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">User</li>
-              <% if user_signed_in? %>
-                <li><%= link_to 'Account', user_path(current_user) %></li>
-                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-              <% else %>
-                <li><%= link_to('Login', new_user_session_path)  %></li>
-                <li><%= link_to "Register", new_user_registration_path(User.new)  %></li>
-              <% end %>
-            </ul>
-          </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->
 

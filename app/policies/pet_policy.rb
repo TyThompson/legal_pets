@@ -12,6 +12,10 @@ class PetPolicy < ApplicationPolicy
     is_seller?
   end
 
+  def new?
+    true
+  end
+
   def show?
     true
   end
