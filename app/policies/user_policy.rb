@@ -8,6 +8,10 @@ class UserPolicy < ApplicationPolicy
     is_admin?
   end
 
+  def export?
+    is_user? || is_admin?
+  end
+
   def user_index?
     is_user? || is_admin?
   end

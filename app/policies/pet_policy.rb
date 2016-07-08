@@ -5,7 +5,7 @@ class PetPolicy < ApplicationPolicy
   end
 
   def user_index?
-    is_seller? || is_admin?
+    is_seller? || is_admin? || is_user?
   end
 
   def create?
