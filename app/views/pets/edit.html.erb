@@ -2,5 +2,9 @@
   <%= f.number_field :price, label: "Price", value: @pet.price %>
   <%= f.text_field :common_name, label: "Common Name", value: @pet.common_name %>
   <%= f.text_field :description, label: "Description", value: @pet.description %>
+  <%= f.select :status,
+              options_for_select([['Avaliable', 'avaliable'],
+                                  ['Unavaliable', 'unavaliable']
+                                  ]), value: @pet.status %>
   <button class="btn btn-primary btn-sm">Update</button>
 <% end %>

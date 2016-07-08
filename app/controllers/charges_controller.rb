@@ -22,6 +22,7 @@ class ChargesController < ApplicationController
     if charge.paid
       pet = Pet.find params[:pet_id]
       pet.status = "sold"
+      pet.buyer = current_user
       pet.save
       redirect_to pet_path(pet), notice: "Congratulations, you purchased the #{pet.common_name}!"
     else

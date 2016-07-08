@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get "/test" => "home#test"
 
   resources :users, only: [:show]
+
+  get '/users/:user_id/pets' => 'pets#user_index', as: 'user_pets'
 end

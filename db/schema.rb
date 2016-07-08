@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 20160705174831) do
     t.integer "seller_id"
     t.string  "species"
     t.string  "common_name"
-    t.float  "price"
+    t.float   "price"
     t.text    "description"
     t.string  "status",                 default: "avaliable"
     t.text    "image_url"
+    t.integer "buyer_id"
 
 
   end

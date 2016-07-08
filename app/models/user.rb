@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :pets
+  has_many :pets, foreign_key: "seller_id"
+  has_many :purchases, class_name: "Pet", foreign_key: "buyer_id"
   has_many :watchlists
 end

@@ -1,5 +1,6 @@
 class Pet < ActiveRecord::Base
   belongs_to :seller, class_name: "User"
+  belongs_to :buyer, class_name: "User"
   validates_presence_of :species, :description, :price
 
   def self.import(file, user)
@@ -25,7 +26,7 @@ class Pet < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-    wanted_columns = ["id", "seller_id", "species", "common_name", "price", "description", "status"]
+    wanted_columns = ["id", "seller_id", "species", "common_name", "price", "description", "status", "buyer_id"]
     CSV.generate(options) do |csv|
       csv << wanted_columns
       all.each do |pet|

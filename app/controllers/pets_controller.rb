@@ -4,6 +4,10 @@ class PetsController < ApplicationController
     @pets = Pet.where(status: 'avaliable')
   end
 
+  def user_index
+
+  end
+
   def new
     @pet = Pet.new
   end
@@ -61,6 +65,6 @@ class PetsController < ApplicationController
 private
 
   def approved_params
-    params.require(:pet).permit(:species,:price,:description,:seller_id, :common_name)
+    params.require(:pet).permit(:species,:price,:description,:seller_id, :common_name, :status)
   end
 end
