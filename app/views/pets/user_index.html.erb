@@ -3,7 +3,7 @@
 
  <h2>
    Your Pet Listings
-   <span class="badge" id="pet-count"> <%= current_user.pets.count %></span>
+   <span class="badge" id="pet-count"> <%= @user.pets.count %></span>
  </h2>
 
  <table class="table table-hover table-striped table-condensed">
@@ -19,7 +19,7 @@
      </tr>
    </thead>
    <tbody  id="current-pets">
-     <% current_user.pets.each do |p| %>
+     <% @user.pets.each do |p| %>
     <tr>
       <th> <%= p.species %></th>
       <th> <%= p.common_name %></th>
@@ -52,7 +52,7 @@
      </tr>
    </thead>
    <tbody  id="current-pets">
-     <% current_user.purchases.each do |p| %>
+     <% @user.purchases.each do |p| %>
     <tr>
       <th> <%= p.species %></th>
       <th> <%= p.common_name %></th>

@@ -27,6 +27,7 @@
           </script>
           <input type="hidden" name="pet_id" value="<%= @pet.id %>">
           <input type="hidden" name="price" value="<%= @pet.price*100 %>">
+          <input type="hidden" name="buyer_id" value="<%= current_user.id %>">
         </form>
         <% end %>
       </div>

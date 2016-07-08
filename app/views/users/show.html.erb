@@ -4,11 +4,21 @@
 <%= link_to "Change Account Information", edit_user_registration_path %>
 
 <h4>See Your Animal Listings/Purchases</h4>
-<%= link_to "Animal Listings/Purchases", user_pets_path(current_user) %>
+<%= link_to "Animal Listings/Purchases", user_pets_path(@user) %>
 
 <h4>Export Your Animal Listing Data</h4>
 <p>
 Download:
-<%= link_to "CSV", export_pets_path(format: "csv") %> |
-<%= link_to "Excel", export_pets_path(format: "xls") %>
+<%= link_to "CSV", export_pets_path(format: "csv", user: @user) %> |
+<%= link_to "Excel", export_pets_path(format: "xls", user: @user) %>
 </p>
+
+<% if policy(@user).export_all? %>
+  <h3>Admin Tools</h3>
+  <h4>Export All Listing Data</h4>
+  <p>
+  Download:
+  <%= link_to "CSV", export_all_pets_path(format: "csv") %> |
+  <%= link_to "Excel", export_all_pets_path(format: "xls") %>
+  </p>
+<% end %>

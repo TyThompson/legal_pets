@@ -1,23 +1,32 @@
 class PetsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @pets = Pet.where(status: 'avaliable')
+    authorize @pets
   end
 
   def user_index
-
+    @user = User.find params[:user_id]
+    @pets = @user.pets
+    @pets.each do |p|
+      authorize p
+    end
   end
 
   def new
-    @pet = Pet.new
+    @pet = current_user.pets.new
+    authorize @pet
   end
 
   def edit
     @pet = Pet.find(params[:id])
+    authorize @pet
   end
 
   def update
     @pet = Pet.find params[:id]
+    authorize @pet
     if @pet.update approved_params
       flash[:notice] = "Pet information edited!"
       redirect_to @pet
@@ -28,6 +37,7 @@ class PetsController < ApplicationController
 
   def create
     @pet = Pet.new (approved_params)
+    authorize @pet
     @pet.get_pic
     if @pet.save
       watchlist_check
@@ -40,6 +50,7 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    authorize @pet
     @stripe_price = (@pet.price.to_f * 10).to_s.gsub('.','')
   end
 
@@ -54,7 +65,20 @@ class PetsController < ApplicationController
   end
 
   def export
-    @pets = Pet.where seller_id: current_user.id
+    @pets = Pet.where seller_id: params[:user]
+    @pets.each do |p|
+      authorize p
+    end
+    respond_to do |format|
+      format.html
+      format.csv { send_data @pets.to_csv }
+      format.xls { send_data @pets.to_csv(col_sep: "\t") }
+    end
+  end
+
+  def export_all
+    @pets = Pet.all
+    authorize current_user
     respond_to do |format|
       format.html
       format.csv { send_data @pets.to_csv }

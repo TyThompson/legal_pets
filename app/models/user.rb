@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
   has_many :pets, foreign_key: "seller_id"
   has_many :purchases, class_name: "Pet", foreign_key: "buyer_id"
   has_many :watchlists
+  has_many :charges, foreign_key: "buyer_id"
+  has_many :charges, foreign_key: "seller_id"
+
+  def admin?
+    self.admin
+  end
 end

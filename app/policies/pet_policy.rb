@@ -4,8 +4,12 @@ class PetPolicy < ApplicationPolicy
     true
   end
 
+  def user_index?
+    is_seller? || is_admin?
+  end
+
   def create?
-    current_user
+    is_seller?
   end
 
   def show?
@@ -13,14 +17,30 @@ class PetPolicy < ApplicationPolicy
   end
 
   def import?
-    current_user
+    is_user? || is_admin?
   end
 
   def export?
-    current_user
+    is_seller? || is_admin?
   end
 
   def update?
-    current_user
+    is_seller? || is_admin?
+  end
+
+  private
+
+  def is_user?
+    record.user == user
+  end
+
+  def is_seller?
+    user == record.seller
+  end
+
+  def is_admin?
+    unless user.nil?
+      user.admin?
+    end
   end
 end

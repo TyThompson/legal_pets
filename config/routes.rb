@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :pets, except: [:destroy, :new] do
     collection { get :export }
+    collection { get :export_all }
     collection { post :import }
   end
   resources :charges, only: [:create]

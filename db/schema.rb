@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160705174831) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "admin",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -53,6 +54,13 @@ ActiveRecord::Schema.define(version: 20160705174831) do
     t.integer "user_id", null: false
     t.string "species", null: false
     t.float "price", null: false
+  end
+
+  create_table "charges", force: :cascade do |t|
+    t.integer "seller_id"
+    t.integer "buyer_id"
+    t.integer "pet_id"
+    t.float "price"
   end
 
 end
