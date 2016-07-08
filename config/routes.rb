@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :charges, only: [:create]
-  resources :watchlists, except: [:destroy, :edit, :update]
+  resources :watchlists
   get "/sell" => "pets#new"
   get "/test" => "home#test"
 
