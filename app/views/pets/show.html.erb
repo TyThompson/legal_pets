@@ -14,21 +14,21 @@
         </div>
         <p>Status: <%= @pet.status %></p>
         <p>Price: $<%= @pet.price %></p>
-        <% unless @pet.status == 'sold' %>
-         <form action="/charges" method="POST">
-          <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_iSj3eYtFd2Ul8cBLBNrKk5As"
-            data-amount="<%= @pet.price*100 %>"
-            data-name="'Legal' Pets"
-            data-description="<%= @pet.species %>"
-            data-image="https://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@pet.seller.email) %>"
-            data-locale="auto">
-          </script>
-          <input type="hidden" name="pet_id" value="<%= @pet.id %>">
-          <input type="hidden" name="price" value="<%= @pet.price*100 %>">
-          <input type="hidden" name="buyer_id" value="<%= current_user.id %>">
-        </form>
+        <% if @pet.status != 'sold' && policy(current_user).create? %>
+          <form action="/charges" method="POST">
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="pk_test_iSj3eYtFd2Ul8cBLBNrKk5As"
+              data-amount="<%= @pet.price*100 %>"
+              data-name="'Legal' Pets"
+              data-description="<%= @pet.species %>"
+              data-image="https://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@pet.seller.email) %>"
+              data-locale="auto">
+            </script>
+            <input type="hidden" name="pet_id" value="<%= @pet.id %>">
+            <input type="hidden" name="price" value="<%= @pet.price*100 %>">
+            <input type="hidden" name="buyer_id" value="<%= current_user.id %>">
+          </form>
         <% end %>
       </div>
       <div class="col-lg-7">
@@ -38,7 +38,9 @@
         <ul>
           <li><%= @pet.description  %></li>
         </ul>
-        <%= button_to "Edit Listing", edit_pet_path(@pet), :class => "btn btn-primary btn-sm", :method => :get %>
+        <% if policy(@pet).edit? %>
+          <%= button_to "Edit Listing", edit_pet_path(@pet), :class => "btn btn-primary btn-sm", :method => :get %>
+        <% end %>
       </div>
     </div>
   </div>

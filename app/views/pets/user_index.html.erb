@@ -20,16 +20,18 @@
    </thead>
    <tbody  id="current-pets">
      <% @user.pets.each do |p| %>
-    <tr>
-      <th> <%= p.species %></th>
-      <th> <%= p.common_name %></th>
-      <th> <%= p.seller.email.split('@').first %></th>
-      <th>$<%= p.price %></th>
-      <th> <%= p.description %></th>
-      <th> <%= p.status %></th>
-      <th><%= button_to "Show", pet_path(id: p.id), class: "btn btn-success btn-xs", method: "get" %></th>
-    </tr>
-      <% end %>
+      <tr>
+        <th> <%= p.species %></th>
+        <th> <%= p.common_name %></th>
+        <th> <%= p.seller.email.split('@').first %></th>
+        <th>$<%= p.price %></th>
+        <th> <%= p.description %></th>
+        <th> <%= p.status %></th>
+        <% if policy(p).show? %>
+          <th><%= button_to "Show", pet_path(id: p.id), class: "btn btn-success btn-xs", method: "get" %></th>
+        <% end %>
+      </tr>
+    <% end %>
 
 
    </tbody>
@@ -52,16 +54,18 @@
      </tr>
    </thead>
    <tbody  id="current-pets">
-     <% @user.purchases.each do |p| %>
-    <tr>
-      <th> <%= p.species %></th>
-      <th> <%= p.common_name %></th>
-      <th> <%= p.seller.email.split('@').first %></th>
-      <th>$<%= p.price %></th>
-      <th> <%= p.description %></th>
-      <th> <%= p.status %></th>
-      <th><%= button_to "Show", pet_path(id: p.id), class: "btn btn-success btn-xs", method: "get" %></th>
-    </tr>
+      <% @user.purchases.each do |p| %>
+        <tr>
+          <th> <%= p.species %></th>
+          <th> <%= p.common_name %></th>
+          <th> <%= p.seller.email.split('@').first %></th>
+          <th>$<%= p.price %></th>
+          <th> <%= p.description %></th>
+          <th> <%= p.status %></th>
+          <% if policy(p).show? %>
+            <th><%= button_to "Show", pet_path(id: p.id), class: "btn btn-success btn-xs", method: "get" %></th>
+          <% end %>
+        </tr>
       <% end %>
 
 
