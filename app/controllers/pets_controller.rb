@@ -69,24 +69,24 @@ class PetsController < ApplicationController
     @pets.each do |p|
       authorize p
     end
-    respond_to do |format|
-      format.html
-      format.csv { send_data @pets.to_csv }
-      format.xls { send_data @pets.to_csv(col_sep: "\t") }
-    end
+    export_func
   end
 
   def export_all
     @pets = Pet.all
     authorize current_user
+    export_func
+  end
+
+private
+
+  def export_func
     respond_to do |format|
       format.html
       format.csv { send_data @pets.to_csv }
       format.xls { send_data @pets.to_csv(col_sep: "\t") }
     end
   end
-
-private
 
   def approved_params
     params.require(:pet).permit(:species,:price,:description,:seller_id, :common_name, :status)
