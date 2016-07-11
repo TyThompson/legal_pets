@@ -14,7 +14,7 @@
         </div>
         <p>Status: <%= @pet.status %></p>
         <p>Price: <%= number_to_currency(@pet.price, :unit => "$") %></p>
-        <% if @pet.status != 'sold' && policy(current_user).create? %>
+        <% if @pet.status != 'sold' && policy(:user).create? %>
           <form action="/charges" method="POST">
             <script
               src="https://checkout.stripe.com/checkout.js" class="stripe-button"

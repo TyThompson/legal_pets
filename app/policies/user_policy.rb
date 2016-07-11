@@ -17,11 +17,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    is_user?
+    user
   end
 
   def update?
-    is_user? || is_admin?
+    user || is_admin?
   end
 
   private

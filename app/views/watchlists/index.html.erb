@@ -33,7 +33,7 @@
       <% end %>
    </tbody>
  </table>
-  <% if policy(current_user).new? %>
+  <% if policy(:user).new? %>
     <%= button_to "New watchlist", new_watchlist_path, class: "btn btn-success btn-xs", method: "get" %>
   <% end %>
 </body>
